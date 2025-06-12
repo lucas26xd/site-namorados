@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feliz Dia dos Namorados</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-pink-50 text-gray-800 font-sans">
+
+  <header class="text-center py-10 bg-pink-200 shadow">
+    <h1 class="text-4xl font-bold">Feliz Dia dos Namorados 💖</h1>
+    <p class="text-lg mt-2">Cada momento com você é uma memória que guardo com carinho.</p>
+    <div class="contador font-bold" id="contador"></div>
+  </header>
+
+  <section class="max-w-3xl mx-auto p-6">
+    <h2 class="text-2xl font-semibold mb-4 text-center">Palavras do Coração</h2>
+    <p class="text-center text-lg">
+      Neste Dia dos Namorados, quero te lembrar que cada instante ao seu lado é poesia viva. Entre risos, abraços e momentos únicos, descobri o verdadeiro significado de amar. Que essa surpresa te faça sorrir — como você faz com meu coração todos os dias. Te amo.
+      Obrigado por ser minha inspiração, minha parceira, e meu amor.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto mt-10 px-4">
+    <h2 class="text-2xl font-bold text-center mb-4">Nossas Memórias</h2>
+    <div class="relative">
+      <div class="overflow-hidden rounded-2xl shadow-lg">
+        <div class="whitespace-nowrap transition-transform duration-500 ease-in-out" id="carousel-track">
+          <img src="foto_1.jpg" class="inline-block w-full h-96 object-cover" />
+          <img src="foto_2.jpg" class="inline-block w-full h-96 object-cover" />
+          <img src="foto_3.jpg" class="inline-block w-full h-96 object-cover" />
+          <img src="foto_4.jpg" class="inline-block w-full h-96 object-cover" />
+          <img src="foto_5.jpg" class="inline-block w-full h-96 object-cover" />
+          <img src="foto_6.jpg" class="inline-block w-full h-96 object-cover" />
+        </div>
+      </div>
+
+      <button onclick="prevSlide()" class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white bg-opacity-70 px-3 py-2 rounded-r-md shadow hover:bg-opacity-100">
+        &#8592;
+      </button>
+      <button onclick="nextSlide()" class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white bg-opacity-70 px-3 py-2 rounded-l-md shadow hover:bg-opacity-100">
+        &#8594;
+      </button>
+    </div>
+  </section>
+
+  <section class="max-w-3xl mx-auto my-12 text-center">
+    <h2 class="text-2xl font-semibold mb-4">Nossa Trilha Sonora</h2>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6PqR67D3sgR3D3XoqFAuRe?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </section>
+
+  <script>
+    let index = 0;
+    const track = document.getElementById('carousel-track');
+    const totalSlides = track.children.length;
+
+    function updateCarousel() {
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    function nextSlide() {
+      index = (index + 1) % totalSlides;
+      updateCarousel();
+    }
+
+    function prevSlide() {
+      index = (index - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+    }
+
+    const inicio = new Date("2024-01-27T00:00:00");
+    const hoje = new Date();
+
+    let anos = hoje.getFullYear() - inicio.getFullYear();
+    let meses = hoje.getMonth() - inicio.getMonth();
+    let dias = hoje.getDate() - inicio.getDate();
+
+    if (dias < 0) {
+      meses--;
+      const ultimoMes = new Date(hoje.getFullYear(), hoje.getMonth(), 0);
+      dias += ultimoMes.getDate();
+    }
+
+    if (meses < 0) {
+      anos--;
+      meses += 12;
+    }
+
+    document.getElementById("contador").textContent = `Estamos juntos há ${anos} ano(s), ${meses} mês(es) e ${dias} dia(s) 💞. E contando...`;
+  </script>
+
+</body>
+</html>
